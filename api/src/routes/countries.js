@@ -1,9 +1,10 @@
 //>>
 const { Router } = require('express');
-const { getCountries } = require('../controllers/countries');
+const { filterByName, filterById } = require('../controllers');
 const router = Router();
 
-router.get('/countries', getCountries);
+router.get('/countries', filterByName);
+router.get('/countries/:countryId', filterById);
 
 module.exports = router;
 //<<

@@ -20,14 +20,14 @@
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
 //>> Importamos "dbLoad" -> carga "api" a "db"
-const { dbLoad } = require('./src/dbLoad');
+const { dbLoader } = require('./src/controllers');
 //<<
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
 	server.listen(3001, () => {
 		//>> Importamos "dbLoad" -> carga "api" a "db"
-		dbLoad();
+		dbLoader();
 		//<<
 		console.log('%s listening at 3001'); // eslint-disable-line no-console
 	});

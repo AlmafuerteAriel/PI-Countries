@@ -7,13 +7,13 @@ module.exports = (sequelize) => {
 		//>>
 		// id // se genera de forma automática
 		name: { type: DataTypes.STRING, allowNull: false },
-		dificult: {
+		difficulty: {
 			type: DataTypes.ENUM('1', '2', '3', '4', '5'),
 			allowNull: false
 		},
 		duration: { type: DataTypes.STRING, allowNull: false },
 		season: {
-			type: DataTypes.ENUM('Summer', 'Fall', 'Winter', 'Spring'),
+			type: DataTypes.ENUM('summer', 'fall', 'winter', 'spring'),
 			allowNull: false
 		}
 		//<<

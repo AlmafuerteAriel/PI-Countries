@@ -1,11 +1,25 @@
 import './App.css';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { Landing } from './components/landing/Landing';
+import { Countries } from './components/countries/Countries';
 
 function App() {
-  return (
-    <div className="App">
-      <h1>Henry Countries</h1>
-    </div>
-  );
+	return (
+		<Router>
+			<Switch>
+				{/* <div className="App"> */}
+				<Switch>
+					<Route exact path="/">
+						<Landing />
+					</Route>
+					<Route exact path="/countries">
+						<Countries />
+					</Route>
+				</Switch>
+				{/* </div> */}
+			</Switch>
+		</Router>
+	);
 }
 
 export default App;

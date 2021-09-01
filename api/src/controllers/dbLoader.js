@@ -1,30 +1,28 @@
 //>>
 const axios = require('axios');
-const { Country } = require('./db');
-const URL_ALL = 'https://restcountries.eu/rest/v2/all';
+const { Country } = require('../db');
+const { URL_ALL } = require('../consts');
 
-async function dbLoad(_req, res) {
+const dbLoader = async function (_req, res) {
 	try {
 		{
 			const apiCountries = await axios.get(URL_ALL);
 			const dbCountries = apiCountries.data.map((c) => {
 				return {
-					id: c.alpha3Code,
-					name: c.name,
 					alpha3Code: c.alpha3Code,
+					name: c.name,
 					flag: c.flag,
 					region: c.region,
 					capital: c.capital,
-					subregion: c.subregion,
-					area: c.area,
-					population: c.population
+					subregion: c.subregion ? c.subregion : 'No information',
+					area: c.area ? c.area : 'No information',
+					population: c.population ? c.population : 'No information'
 				};
 			});
-			dbCountries.forEach(async (c) => {
+			dbCountries.map(async (c) => {
 				await Country.create({
-					id: c.id,
+					id: c.alpha3Code,
 					name: c.name,
-					alpha3Code: c.alpha3Code,
 					flag: c.flag,
 					region: c.region,
 					capital: c.capital,
@@ -33,11 +31,12 @@ async function dbLoad(_req, res) {
 					population: c.population
 				});
 			});
+			console.log('DB Loaded');
 		}
 	} catch (error) {
 		res.status(500).json({ error: 'Server Error' });
 	}
-}
+};
 
-module.exports = { dbLoad };
+module.exports = { dbLoader };
 //<<
