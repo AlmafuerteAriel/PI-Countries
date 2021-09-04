@@ -1,0 +1,21 @@
+.countryCard {
+  list-style: none;
+  font-size: 1,5rem;
+  text-align: center;
+}
+
+.image {
+  border-radius: 10px;
+  background-color: black;
+  /* fijamos ancho y alto para reservar espacio */
+  width: 350px;
+  height: 235px;
+}
+
+/* imagen ocupa t90% del ancho en pantallas móviles */
+@media (max-width: 560px) {
+  .image {
+    width: 90%;
+    height: auto;
+  }
+}

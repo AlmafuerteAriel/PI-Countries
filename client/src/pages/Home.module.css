@@ -1,0 +1,20 @@
+.countriesGrid {
+  display: grid;
+  /* ancho de columna */
+  grid-template-columns: repeat(auto-fill, 350px);
+  gap: 40px;
+  padding: 40px;
+  justify-content: center;
+}
+
+/* ocupar todo el ancho en pantallas móviles */
+@media (max-width: 560px) {
+  .countriesGrid {
+    grid-template-columns: 100%;
+  }
+}
+
+.title {
+  text-align: center;
+  font-size: 3rem;
+}
