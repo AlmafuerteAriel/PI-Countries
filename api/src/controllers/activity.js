@@ -32,7 +32,7 @@ const addActivity = async function (req, res) {
 		//<<
 		//res.json({ msg: 'Activity Created' });
 	} catch {
-		res.json({ msg: 'Server error' });
+		res.send(500).json({ msg: 'Server error' });
 	}
 };
 
