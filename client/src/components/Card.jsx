@@ -8,7 +8,6 @@ export function Card ({flag, name, region, population}) {
       <h2 className={styles.title}>{name}</h2>
       <h3 className={styles.item}>Continent: {region}</h3>
       <h3 className={styles.item}>Population: {population}</h3>
-      
     </li>
   )
 }

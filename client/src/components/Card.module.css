@@ -2,11 +2,14 @@
   list-style: none;
   font-size: 1,5rem;
   text-align: center;
+  background-color: steelblue;
+  border-radius: 15px;
+  height: 420px;
 }
 
 .image {
   border-radius: 10px;
-  background-color: black;
+  background-color: steelblue;
   /* fijamos ancho y alto para reservar espacio */
   width: 350px;
   height: 235px;
@@ -19,3 +22,4 @@
     height: auto;
   }
 }
+

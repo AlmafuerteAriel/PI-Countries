@@ -9,3 +9,24 @@ export function getCountries() {
 		});
 	};
 }
+
+export function filterCountriesByRegion(payload) {
+	return {
+		type: 'FILTER_BY_REGION',
+		payload
+	};
+}
+
+export function orderCountriesByName(payload) {
+	return {
+		type: 'ORDER_BY_NAME',
+		payload
+	};
+}
+
+export function orderCountriesByPopulation(payload) {
+	return {
+		type: 'ORDER_BY_POPULATION',
+		payload
+	};
+}

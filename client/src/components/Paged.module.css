@@ -1,0 +1,45 @@
+/*primero en el móvil (mobile first)*/
+
+nav {
+  padding: 1em;
+  font-family: Verdana, Geneva, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: steelblue;
+  
+}
+
+nav li a {
+  color: white;
+  display: block;
+  text-decoration: none;
+  padding: .2em 0.2em;
+}
+
+nav li a:hover {
+  background: rgb(18, 111, 187);
+  color: white;
+  cursor: pointer;
+}
+
+
+/* @media-query */
+
+@media screen and (min-width: 480px) {
+  nav ul {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  nav li{
+    /*la caja puede crecer para ocupar todo el espacio disponible */
+    flex-grow: 1;
+    text-align: center;
+  }
+}
