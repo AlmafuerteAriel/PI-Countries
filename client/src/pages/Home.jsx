@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom';
 import { Card } from '../components/Card';
 import styles from './Home.module.css';
 import { Paged } from '../components/Paged';
+import { SearchBar } from '../components/searchBar';
 
 export function Home() {
   const dispatch = useDispatch();
@@ -53,14 +54,14 @@ export function Home() {
     e.preventDefault();
     dispatch(orderCountriesByName(e.target.value))
     setCurrentPage(1);
-    setRefresh([]) //Modifico estado local para recargar
+    setRefresh(`Ordered By Name ${e.target.value}`) //Modifico estado local para recargar
   }
 
   function handlerOrderByPopulation(e) {
     e.preventDefault();
     dispatch(orderCountriesByPopulation(e.target.value))
     setCurrentPage(1);
-    setRefresh([]) //Modifico estado local para recargar
+    setRefresh(`Ordered By Population ${e.target.value}`) //Modifico estado local para recargar
   }
   //<<
 
@@ -71,6 +72,10 @@ export function Home() {
       <div className={styles.filtersContent}>
         <button onClick={e => {handleClick(e)}}>Reload Countries</button>
         <Link to='/activity'><button>Add Activity</button></Link>
+      </div>
+
+      <div className={styles.filtersContent}>
+        <SearchBar/>
       </div>
 
       <div className={styles.filtersContent}>
@@ -113,7 +118,8 @@ export function Home() {
           {
             currentCountries?.map(c => {
               return (
-                <div>
+                // key => evitar warning!!!
+                <div key={c.name}>
                   <Link to={'/home/' + c.id}>
                     <Card
                       flag={c.flag}
@@ -130,5 +136,4 @@ export function Home() {
       </div>
     </div>
   )
-
 }

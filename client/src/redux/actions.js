@@ -30,3 +30,19 @@ export function orderCountriesByPopulation(payload) {
 		payload
 	};
 }
+
+export function getCountriesByName(payload) {
+	return async function (dispatch) {
+		try {
+			const countriesByName = await axios.get(
+				`http://localhost:3001/countries?name=${payload}`
+			);
+			return dispatch({
+				type: 'GET_COUNTRIES_BY_NAME',
+				payload: countriesByName.data
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+}

@@ -28,6 +28,10 @@ nav li a:hover {
   cursor: pointer;
 }
 
+nav li a:active {
+  color: black;
+  cursor: pointer;
+}
 
 /* @media-query */
 

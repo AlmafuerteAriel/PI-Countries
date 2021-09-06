@@ -51,22 +51,24 @@ export function rootReducer(state = initialState, action) {
 		case 'ORDER_BY_POPULATION':
 			let orderedCountriesByPopulation;
 			if (action.payload === 'Ascendent') {
-				orderedCountriesByPopulation = state.countries.sort((a, b) => {
-					if (a.population > b.population) return 1;
-					if (a.population < b.population) return -1;
-					return 0;
-				});
+				orderedCountriesByPopulation = state.countries.sort(
+					(a, b) => a.population - b.population
+				);
 			}
 			if (action.payload === 'Descendent') {
-				orderedCountriesByPopulation = state.countries.sort((a, b) => {
-					if (a.population < b.population) return 1;
-					if (a.population > b.population) return -1;
-					return 0;
-				});
+				orderedCountriesByPopulation = state.countries.sort(
+					(a, b) => b.population - a.population
+				);
 			}
 			return {
 				...state,
 				countries: orderedCountriesByPopulation
+			};
+
+		case 'GET_COUNTRIES_BY_NAME':
+			return {
+				...state,
+				countries: action.payload
 			};
 
 		default:
