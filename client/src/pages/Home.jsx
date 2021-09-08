@@ -10,9 +10,9 @@ import {
 } from '../redux/actions';
 import { Link } from 'react-router-dom';
 import { Card } from '../components/Card';
-import styles from './Home.module.css';
 import { Paged } from '../components/Paged';
 import { SearchBar } from '../components/searchBar';
+import styles from './Home.module.css';
 
 export function Home() {
   const dispatch = useDispatch();
@@ -88,6 +88,7 @@ export function Home() {
           <option value='Asia'>Asia</option>
           <option value='Europe'>Europe</option>
           <option value='Oceania'>Oceania</option>
+          <option value='Polar'>Polar</option>
         </select>
         {/* Filtrado por actividad turística */}
         <span>Activity: </span>

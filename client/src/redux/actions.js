@@ -46,3 +46,13 @@ export function getCountriesByName(payload) {
 		}
 	};
 }
+//>>Funcón para agregar post a la tabla "activity"
+export function addActivity(payload) {
+	return async function (dispatch) {
+		const response = await axios.post(
+			'http://localhost:3001/activity',
+			payload
+		);
+		return response;
+	};
+}

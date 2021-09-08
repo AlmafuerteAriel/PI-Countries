@@ -1,6 +1,33 @@
-//>>
 const { Activity, Country } = require('../db.js');
 
+const addActivity = async function (req, res) {
+	try {
+		const { name, difficulty, duration, season, countryId } = req.body;
+		let newActivity = await Activity.findOrCreate({
+			where: {
+				name: name,
+				difficulty: difficulty,
+				duration: duration,
+				season: season
+			}
+		});
+		//countryId = [Id1, Id2, ...]
+		for (let i = 0; i < countryId.length; i++) {
+			const match = await Country.findOne({
+				where: {
+					id: countryId[i]
+				}
+			});
+
+			await newActivity[0].addCountry(match);
+		}
+		res.json({ msg: 'Activity created' });
+	} catch (error) {
+		res.send({ msg: 'Server Error' });
+	}
+};
+
+/*
 const addActivity = async function (req, res) {
 	const { countryId, name, difficulty, duration, season } = req.body;
 	if (!countryId || !name || !difficulty || !duration || !season) {
@@ -35,8 +62,8 @@ const addActivity = async function (req, res) {
 		res.send(500).json({ msg: 'Server error' });
 	}
 };
+*/
 
 module.exports = {
 	addActivity
 };
-//<<

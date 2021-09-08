@@ -4,7 +4,6 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
 	// defino el modelo
 	sequelize.define('country', {
-		//-->
 		id: {
 			type: DataTypes.STRING(3),
 			allowNull: false,
@@ -17,6 +16,5 @@ module.exports = (sequelize) => {
 		subregion: { type: DataTypes.STRING, allowNull: true },
 		area: { type: DataTypes.DOUBLE, allowNull: true }, // Da error con INTEGER
 		population: { type: DataTypes.STRING, allowNull: true }
-		//--<
 	});
 };

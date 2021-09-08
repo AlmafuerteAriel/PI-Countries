@@ -1,4 +1,3 @@
-//>>
 const { Activity, Country } = require('../db.js');
 
 // const getAllCountries = async (_req, res) => {
@@ -16,10 +15,7 @@ const filterByName = async (req, res) => {
 	//localhost:3001/countries -> All Countries
 	//localhost:3001/countries?name=nameToSearch
 	try {
-		//const dbCountries = await Country.findAll({ include: [Activity] });
-		//>>
 		const dbCountries = await Country.findAll({ include: [Activity] });
-		//<<
 		const { name } = req.query;
 		if (name) {
 			const countriesByName = dbCountries.filter((c) =>
@@ -58,4 +54,3 @@ module.exports = {
 	filterByName,
 	filterById
 };
-//<<

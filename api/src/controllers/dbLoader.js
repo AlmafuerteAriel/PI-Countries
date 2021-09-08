@@ -34,7 +34,7 @@ const dbLoader = async function (_req, res) {
 			console.log('DB Loaded');
 		}
 	} catch (error) {
-		res.status(500).json({ error: 'Server Error' });
+		res.status(500).json({ msg: 'Server Error' });
 	}
 };
 

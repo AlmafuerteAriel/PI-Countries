@@ -70,6 +70,11 @@ export function rootReducer(state = initialState, action) {
 				...state,
 				countries: action.payload
 			};
+		//Agregar Post en activity: No tiene función
+		case 'ADD_ACTIVITY':
+			return {
+				...state
+			};
 
 		default:
 			return state;

@@ -1,0 +1,26 @@
+.item{
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.content {
+  text-align: center;
+}
+
+.countries {
+  padding-top: 20;
+}
+
+.radioItem {
+  margin-left: 25px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: auto;
+  width: 500px;
+}
+
