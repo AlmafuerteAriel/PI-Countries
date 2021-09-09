@@ -17,6 +17,13 @@ export function filterCountriesByRegion(payload) {
 	};
 }
 
+export function filterCountriesByActivity(payload) {
+	return {
+		type: 'FILTER_BY_ACTIVITY',
+		payload
+	};
+}
+
 export function orderCountriesByName(payload) {
 	return {
 		type: 'ORDER_BY_NAME',
@@ -48,11 +55,48 @@ export function getCountriesByName(payload) {
 }
 //>>Funcón para agregar post a la tabla "activity"
 export function addActivity(payload) {
+	//console.log('entre a addAct');
+	//console.log(payload);
 	return async function (dispatch) {
-		const response = await axios.post(
-			'http://localhost:3001/activity',
-			payload
-		);
-		return response;
+		try {
+			const response = await axios.post(
+				'http://localhost:3001/activity',
+				payload
+			);
+			console.log(response);
+			return response;
+		} catch (error) {
+			console.log(error);
+		}
+	};
+}
+
+//Traer país desde el back:
+export function getCountyDetails(id) {
+	return async function (dispatch) {
+		try {
+			const response = await axios(`http://localhost:3001/countries/${id}`);
+			return dispatch({
+				type: 'GET_COUNTRY_DETAILS',
+				payload: response.data
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+}
+
+//Traer activities desde el back:
+export function getActivities() {
+	return async function (dispatch) {
+		try {
+			const response = await axios('http://localhost:3001/activity');
+			return dispatch({
+				type: 'GET_ACTIVITIES',
+				payload: response.data
+			});
+		} catch (error) {
+			console.log(error);
+		}
 	};
 }

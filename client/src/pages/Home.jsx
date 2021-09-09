@@ -121,7 +121,7 @@ export function Home() {
               return (
                 // key => evitar warning!!!
                 <div key={c.name}>
-                  <Link to={'/home/' + c.id}>
+                  <Link to={`/home/${c.id}`}>
                     <Card
                       flag={c.flag}
                       name={c.name}

@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import { Landing } from './pages/Landing';
 import { Home } from './pages/Home';
 import { Activity } from './pages/Activity';
+import { Details } from './pages/Details';
 
 export function App() {
 	return (
@@ -12,6 +13,7 @@ export function App() {
 					<Route exact path="/" component={Landing} />
 					<Route exact path="/home" component={Home} />
 					<Route exact path="/activity" component={Activity} />
+					<Route exact path="/home/:id" component={Details} />
 				</Switch>
 			</div>
 		</BrowserRouter>

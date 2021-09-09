@@ -1,5 +1,16 @@
 const { Activity, Country } = require('../db.js');
 
+const getActivities = async (_req, res) => {
+	try {
+		const allActivities = await Activity.findAll({
+			include: [Country]
+		});
+		res.json(allActivities);
+	} catch (error) {
+		res.json({ error: 'Error reading database' });
+	}
+};
+
 const addActivity = async function (req, res) {
 	try {
 		const { name, difficulty, duration, season, countryId } = req.body;
@@ -27,43 +38,7 @@ const addActivity = async function (req, res) {
 	}
 };
 
-/*
-const addActivity = async function (req, res) {
-	const { countryId, name, difficulty, duration, season } = req.body;
-	if (!countryId || !name || !difficulty || !duration || !season) {
-		return res.status(404).json({ msg: 'Insufficient data' });
-	}
-	const activityExists = await Activity.findOne({
-		where: { name: name }
-	});
-	if (activityExists) {
-		return res.json({ msg: 'The activity already exists' });
-	}
-	try {
-		// Insertamos nuevo registro en db
-		const newActivity = await Activity.create({
-			name,
-			difficulty,
-			duration,
-			season
-		});
-		console.log('Activity Created');
-		//>> Conectamos ambas tablas
-		await newActivity.setCountries(countryId);
-		const matchCountry = await Country.findAll({
-			where: { id: countryId },
-			include: [Activity]
-		});
-		await newActivity.addCountries(matchCountry);
-		return res.send(matchCountry);
-		//<<
-		//res.json({ msg: 'Activity Created' });
-	} catch {
-		res.send(500).json({ msg: 'Server error' });
-	}
-};
-*/
-
 module.exports = {
+	getActivities,
 	addActivity
 };
