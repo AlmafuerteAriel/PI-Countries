@@ -150,46 +150,6 @@ export function Activity() {
         />
         {errors.difficulty && (<p className='error'>{errors.difficulty}</p>)}
 
-        {/* <label className={styles.item}>Difficulty: </label>
-        <label>
-          <span className={styles.radioItem}>1</span>
-          <input 
-            type='radio' 
-            name='difficulty' 
-            value='1' 
-            onChange={e => handleRadio(e)}
-          />
-          <span className={styles.radioItem}>2</span>
-          <input 
-            type='radio' 
-            name='difficulty' 
-            value='2' 
-            onChange={e => handleRadio(e)}
-          />
-          <span className={styles.radioItem}>3</span>
-          <input 
-            type='radio' 
-            name='difficulty' 
-            value='3' 
-            onChange={e => handleRadio(e)}
-          />
-          <span className={styles.radioItem}>4</span>
-          <input 
-            type='radio' 
-            name='difficulty' 
-            value='4' 
-            onChange={e => handleRadio(e)}
-          />
-          <span className={styles.radioItem}>5</span>
-          <input 
-            type='radio' 
-            name='difficulty' 
-            value='5' 
-            onChange={e => handleRadio(e)}
-          />
-        </label>
-        {errors.difficulty && (<p className='difficulty'>{errors.difficulty}</p>)} */}
-                
         <label className={styles.item}>Season: </label>
         <div>
           <span>Summer</span>

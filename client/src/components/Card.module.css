@@ -2,17 +2,20 @@
   list-style: none;
   font-size: 1,5rem;
   text-align: center;
-  background-color: steelblue;
+  background: linear-gradient(to bottom, #2B3945, rgb(205, 205, 223));
+  /* background-color: steelblue; */
+  box-shadow: 5px 5px 15px #2B3945;
   border-radius: 15px;
-  height: 420px;
+  height: 340px;
 }
 
 .image {
   border-radius: 10px;
-  background-color: steelblue;
   /* fijamos ancho y alto para reservar espacio */
-  width: 350px;
-  height: 235px;
+  width: 250px;
+  height: 150px;
+  padding: 5px;
+  border-radius: 15px;
 }
 
 /* imagen ocupa t90% del ancho en pantallas móviles */

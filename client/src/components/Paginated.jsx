@@ -1,7 +1,7 @@
 import React from "react";
-import styles from './Paged.module.css';
+import styles from './Paginated.module.css';
 
-export function Paged ( {countriesPerPage, allCountries, paged}) {
+export function Paginated ( {countriesPerPage, allCountries, paginated}) {
   const pageNumbers = [];
   for (let i = 0; i < Math.ceil(allCountries / countriesPerPage); i++) {
     pageNumbers.push(i + 1); //Número de páginas totales
@@ -11,7 +11,7 @@ export function Paged ( {countriesPerPage, allCountries, paged}) {
       <ul className={styles.navPages}>
         {pageNumbers?.map(number => (
           <li key={number}>
-            <a onClick={() => paged(number)}>{number}</a>
+            <a onClick={() => paginated(number)}>{number}</a>
           </li>
         ))}
       </ul>

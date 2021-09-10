@@ -6,12 +6,15 @@ import {
   getCountries,
   filterCountriesByRegion,
   orderCountriesByName,
-  orderCountriesByPopulation
+  orderCountriesByPopulation,
+  getActivities,
+  filterCountriesByActivity
 } from '../redux/actions';
 import { Link } from 'react-router-dom';
 import { Card } from '../components/Card';
-import { Paged } from '../components/Paged';
+import { Paginated } from '../components/Paginated';
 import { SearchBar } from '../components/searchBar';
+import { NavBar } from '../components/NavBar';
 import styles from './Home.module.css';
 
 export function Home() {
@@ -29,16 +32,23 @@ export function Home() {
   const currentCountries = allCountries.slice(indexOfFirstCountry, indexOfLastCountry)
   //Creo estado inicial para recargar página al ordenar por nombre:
   const [refresh, setRefresh] = useState([]);
+  //Traemos las actividades:
+  const activities = useSelector((state) => state.activities);
 
-  const paged = (pageNumber) => {
+  const paginated = (pageNumber) => {
     setCurrentPage(pageNumber);
   }
-
   //<<
 
+  //Actualizamos los países:
   useEffect(()=> {
     dispatch(getCountries());
   },[dispatch])
+
+  //Actualizamos las actividades:
+  useEffect(()=> {
+    dispatch(getActivities());
+  }, [dispatch])
 
   function handleClick(e) {
     e.preventDefault();
@@ -48,6 +58,11 @@ export function Home() {
   //>> recibe los datos del formulario: "e.target.value":
   function handlerFilterByRegion(e) {
     dispatch(filterCountriesByRegion(e.target.value))
+  }
+
+  function handleFilterByActivity(e) {
+    dispatch(filterCountriesByActivity(e.target.value));
+    //console.log(e.target.value);
   }
 
   function handlerOrderByName(e) {
@@ -67,52 +82,57 @@ export function Home() {
 
   return (
     <div>
-      <h1 className={styles.title}>Countries</h1>
+      <NavBar />
       
-      <div className={styles.filtersContent}>
-        <button onClick={e => {handleClick(e)}}>Reload Countries</button>
-        <Link to='/activity'><button>Add Activity</button></Link>
-      </div>
+      <div className={styles.content}>
+        <div className={styles.searchContent}>
+          <button className={styles.button} onClick={e => {handleClick(e)}}>Reload Countries</button>
+          <Link to='/activity'><button className={styles.button}>Add Activity</button></Link>
+          <SearchBar className={styles.button} />
+        </div>
 
-      <div className={styles.filtersContent}>
-        <SearchBar/>
+        <div className={styles.filterContent}>
+          {/* Filtrado por continente */}
+          <span className={styles.item}>Region: </span>
+          <select className={styles.select} onChange={e => handlerFilterByRegion(e)} >
+            <option value='All'>All</option>
+            <option value='Africa'>Africa</option>
+            <option value='Americas'>Americas</option>
+            <option value='Asia'>Asia</option>
+            <option value='Europe'>Europe</option>
+            <option value='Oceania'>Oceania</option>
+            <option value='Polar'>Polar</option>
+          </select>
+          {/* Filtrado por actividad turística */}
+          <span className={styles.item}>Activity: </span>
+          <select className={styles.select} onChange={(e) => handleFilterByActivity(e)} >
+            {
+              activities.map((a) => (
+                <option value={a.name} key={a.name}>{a.name}</option>
+              ))
+            }
+          </select>
+          {/* Filtrado por orden alfabético */}
+          <span className={styles.item}>Order: </span>
+          <select className={styles.select} onChange={(e) => handlerOrderByName(e)} >
+            <option value='Ascendent'>Ascendent</option>
+            <option value='Descendent'>Descendent</option>
+          </select>
+          {/* Filtrado por población */}
+          <span className={styles.item}>Population: </span>
+          <select className={styles.select} onChange={e => handlerOrderByPopulation(e)}>
+            <option value='Ascendent'>Ascendent</option>
+            <option value='Descendent'>Descendent</option>
+          </select>
+        </div>
       </div>
-
-      <div className={styles.filtersContent}>
-        {/* Filtrado por continente */}
-        <span>Region: </span>
-        <select onChange={e => handlerFilterByRegion(e)} >
-          <option value='All'>All</option>
-          <option value='Africa'>Africa</option>
-          <option value='Americas'>Americas</option>
-          <option value='Asia'>Asia</option>
-          <option value='Europe'>Europe</option>
-          <option value='Oceania'>Oceania</option>
-          <option value='Polar'>Polar</option>
-        </select>
-        {/* Filtrado por actividad turística */}
-        <span>Activity: </span>
-        <select>
-          <option value='asc'>Ascendent</option>
-          <option value='desc'>Descendent</option>
-        </select>
-        {/* Filtrado por orden alfabético */}
-        <span>Order: </span>
-        <select onChange={e => handlerOrderByName(e)} >
-          <option value='Ascendent'>Ascendent</option>
-          <option value='Descendent'>Descendent</option>
-        </select>
-        {/* Filtrado por población */}
-        <span>Population: </span>
-        <select onChange={e => handlerOrderByPopulation(e)}>
-          <option value='Ascendent'>Ascendent</option>
-          <option value='Descendent'>Descendent</option>
-        </select>
-        {/* //>> PAGINADO */}
-        <Paged
+      
+      {/* //>> PAGINADO */}
+      <div>
+        <Paginated
           countriesPerPage={countriesPerPage}
           allCountries={allCountries.length}
-          paged={paged}
+          paginated={paginated}
         />
         {/* //<< PAGINADO */}
         <ul className={styles.countriesGrid}>

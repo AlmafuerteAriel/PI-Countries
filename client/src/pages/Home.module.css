@@ -1,7 +1,7 @@
 .countriesGrid {
   display: grid;
   /* ancho de columna */
-  grid-template-columns: repeat(auto-fill, 350px);
+  grid-template-columns: repeat(auto-fill, 260px);
   gap: 40px;
   padding: 40px;
   justify-content: center;
@@ -14,11 +14,67 @@
   }
 }
 
-.title {
-  text-align: center;
-  font-size: 3rem;
+.content {
+  background-color: #3d4a57;
+  padding: 5px;
 }
 
-.filtersContent {
+.searchContent {
   text-align: center;
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+  padding-bottom: 5px;
+}
+@media (max-width: 560px) {
+  .searchContent {
+    flex-direction: column;
+  }
+}
+
+.filterContent {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+  padding-top: 0px;
+}
+@media (max-width: 560px) {
+  .filterContent {
+    flex-direction: column;
+  }
+}
+
+.button {
+  margin-right: 25px;
+  font-size: 1em;
+  width: 150px;
+  color: white;
+  background-color: #3d4a57;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.button:hover {
+  background-color: rgb(139, 139, 139);
+  color: #2B3945;
+}
+
+.button:active {
+  background-color: rgb(219, 219, 219);
+  color: #2B3945;
+}
+
+.item {
+  margin-right: 25px;
+  font-size: 1em;
+  width: 100px;
+  color: white;
+  margin-right: 0px;
+  margin-left: 20px;
+}
+
+.select {
+  width: 120px;
 }

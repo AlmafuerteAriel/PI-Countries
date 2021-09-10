@@ -30,13 +30,30 @@ export function rootReducer(state = initialState, action) {
 			};
 
 		case 'FILTER_BY_ACTIVITY':
+			//const countries = state.allCountries;
 			const countries = state.countries;
-			const countriesByActivity = countries.filter((c) =>
-				c.activities.map((a) => a === action.payload)
-			);
+			//const filteredByActivity = [];
+			//console.log(action.payload);
+			//console.log(countries[0]);
+			let filteredByActivity = [];
+			for (let c = 0; c < countries.length; c++) {
+				if (countries[c].activities.length) {
+					for (let a = 0; a < countries[c].activities.length; a++) {
+						if (countries[c].activities[a].name === action.payload) {
+							filteredByActivity.push(countries[c]);
+						}
+					}
+				}
+			}
+			//console.log(filteredByActivity);
+
+			//const countriesByActivity = [];
+			// const countriesByActivity = countries.filter((c) =>
+			// 	c.activities.map((a) => a === action.payload)
+			// );
 			return {
 				...state,
-				countries: countriesByActivity
+				countries: filteredByActivity
 			};
 
 		case 'ORDER_BY_NAME':
