@@ -1,4 +1,3 @@
-//import styles from './Home.module.css';
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -29,7 +28,10 @@ export function Home() {
   const indexOfLastCountry = currentPage * countriesPerPage;
   const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
   //Guardamos countries a mostrar por página
-  const currentCountries = allCountries.slice(indexOfFirstCountry, indexOfLastCountry)
+  const currentCountries = allCountries.slice(
+    indexOfFirstCountry,
+    (currentPage === 1 ? indexOfLastCountry - 1 : indexOfLastCountry)
+  );
   //Creo estado inicial para recargar página al ordenar por nombre:
   const [refresh, setRefresh] = useState([]);
   //Traemos las actividades:
@@ -56,13 +58,18 @@ export function Home() {
   }
 
   //>> recibe los datos del formulario: "e.target.value":
-  function handlerFilterByRegion(e) {
+  function handleFilterByRegion(e) {
     dispatch(filterCountriesByRegion(e.target.value))
+    setCurrentPage(1);
+    setRefresh(`Ordered By Region ${e.target.value}`)
   }
 
   function handleFilterByActivity(e) {
     dispatch(filterCountriesByActivity(e.target.value));
     //console.log(e.target.value);
+    setCurrentPage(1);
+    setRefresh(`Ordered By Activity ${e.target.value}`) //Modifico estado local para recargar
+    e.target.value = '';
   }
 
   function handlerOrderByName(e) {
@@ -93,9 +100,9 @@ export function Home() {
 
         <div className={styles.filterContent}>
           {/* Filtrado por continente */}
-          <span className={styles.item}>Region: </span>
-          <select className={styles.select} onChange={e => handlerFilterByRegion(e)} >
-            <option value='All'>All</option>
+          <span className={styles.item}>Continent: </span>
+          <select className={styles.select} onChange={e => handleFilterByRegion(e)} >
+            <option value='All' selected="true">All</option>
             <option value='Africa'>Africa</option>
             <option value='Americas'>Americas</option>
             <option value='Asia'>Asia</option>
@@ -106,6 +113,7 @@ export function Home() {
           {/* Filtrado por actividad turística */}
           <span className={styles.item}>Activity: </span>
           <select className={styles.select} onChange={(e) => handleFilterByActivity(e)} >
+            <option selected disabled>Choose activity</option>
             {
               activities.map((a) => (
                 <option value={a.name} key={a.name}>{a.name}</option>
@@ -115,12 +123,14 @@ export function Home() {
           {/* Filtrado por orden alfabético */}
           <span className={styles.item}>Order: </span>
           <select className={styles.select} onChange={(e) => handlerOrderByName(e)} >
+            <option selected disabled>Choose order</option>
             <option value='Ascendent'>Ascendent</option>
             <option value='Descendent'>Descendent</option>
           </select>
           {/* Filtrado por población */}
           <span className={styles.item}>Population: </span>
           <select className={styles.select} onChange={e => handlerOrderByPopulation(e)}>
+          <option selected disabled>Choose order</option>
             <option value='Ascendent'>Ascendent</option>
             <option value='Descendent'>Descendent</option>
           </select>
@@ -133,6 +143,8 @@ export function Home() {
           countriesPerPage={countriesPerPage}
           allCountries={allCountries.length}
           paginated={paginated}
+          //Enviamos la currentPage
+          currentPage={currentPage}
         />
         {/* //<< PAGINADO */}
         <ul className={styles.countriesGrid}>

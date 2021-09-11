@@ -77,6 +77,13 @@
   margin-left: 20px;
 }
 
-.select {
-  width: 120px;
+select {
+  width: 140px;
+  font-size: 0.9em;
 }
+
+option {
+  color: #2B3945;
+}
+
+
