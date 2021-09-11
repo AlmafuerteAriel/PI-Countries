@@ -14,10 +14,12 @@ export function SearchBar() {
     setName(e.target.value);
   }
   
-  function handlerSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
     dispatch(getCountriesByName(name));
-    //setName('');
+    //console.log('1 ', name);
+    //setName('Search Countries...');
+    //console.log('2 ', name);
   }
 
   return (
@@ -30,7 +32,7 @@ export function SearchBar() {
           onChange={(e) => handlerInputChange(e)}
         />
         <button className={styles.searchButton} type='submit' onClick={
-          (e) => { handlerSubmit(e) }
+          (e) => { handleSubmit(e) }
         }>
           <FiSearch className={styles.imageButton} />
         </button>

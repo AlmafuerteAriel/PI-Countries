@@ -32,16 +32,18 @@ export function Details(props) {
         <h3>Area in millon km &#178;: {country.area / 1000000}</h3>
         <h3>Population: {country.population}</h3>
         <h3 >Activities: {existActivities}</h3>
-        <ul className={styles.countriesGrid}>
+        <ul className={styles.activitiesContent}>
           {
             country.activities?.map(c => {
               return (
                 // key => evitar warning!!!
-                <li className={styles.item} key={c.name}>
-                  <h4>{c.name}</h4>
-                  <h5>Duration: {c.duration}</h5>
-                  <h5>Difficulty: {c.difficulty}</h5>
-                  <h5>Season: {c.season}</h5>
+                <li className={styles.activity} key={c.name}>
+                  <h3 className={styles.activityTitle}>{c.name}</h3>
+                  <div className={styles.activityItems}>
+                    <h3>Duration: {c.duration}</h3>
+                    <h3>Difficulty: {c.difficulty}</h3>
+                    <h3>Season: {c.season}</h3>
+                  </div>
                 </li>
               )
             })

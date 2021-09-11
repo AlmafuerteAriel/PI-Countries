@@ -80,10 +80,14 @@
 select {
   width: 140px;
   font-size: 0.9em;
+
 }
 
 option {
   color: #2B3945;
+  font-size: 0.9em;
+  margin: 0;
+  padding: 0;
 }
 
 

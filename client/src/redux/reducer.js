@@ -30,8 +30,8 @@ export function rootReducer(state = initialState, action) {
 			};
 
 		case 'FILTER_BY_ACTIVITY':
-			//const countries = state.allCountries;
-			const countries = state.countries;
+			const countries = state.allCountries;
+			//const countries = state.countries;
 			//const filteredByActivity = [];
 			//console.log(action.payload);
 			//console.log(countries[0]);

@@ -9,7 +9,7 @@
   font-size: 1,5rem;
   text-align: center;
   line-height : 40px;
-  background: linear-gradient(to bottom, #2B3945, rgb(205, 205, 223));
+  background: linear-gradient(to bottom, #55626d, rgb(189, 189, 207));
   box-shadow: 5px 5px 15px #2B3945;
   border-radius: 15px;
   min-height: 400px;
@@ -19,11 +19,12 @@
 }
 
 .card h2 {
-  color: rgb(139, 139, 139);
+  color: black;
   padding-top: 15px;
 }
 
 .card p {
   color: #2B3945;
   padding-top: 25px;
+  font-size: 1.2em;
 }

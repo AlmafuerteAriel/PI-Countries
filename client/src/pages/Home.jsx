@@ -69,21 +69,23 @@ export function Home() {
     //console.log(e.target.value);
     setCurrentPage(1);
     setRefresh(`Ordered By Activity ${e.target.value}`) //Modifico estado local para recargar
-    e.target.value = '';
+    e.target.value = 'default';
   }
 
-  function handlerOrderByName(e) {
+  function handleOrderByName(e) {
     e.preventDefault();
     dispatch(orderCountriesByName(e.target.value))
     setCurrentPage(1);
     setRefresh(`Ordered By Name ${e.target.value}`) //Modifico estado local para recargar
+    e.target.value = 'default';
   }
 
-  function handlerOrderByPopulation(e) {
+  function handleOrderByPopulation(e) {
     e.preventDefault();
     dispatch(orderCountriesByPopulation(e.target.value))
     setCurrentPage(1);
     setRefresh(`Ordered By Population ${e.target.value}`) //Modifico estado local para recargar
+    e.target.value = 'default';
   }
   //<<
 
@@ -102,7 +104,7 @@ export function Home() {
           {/* Filtrado por continente */}
           <span className={styles.item}>Continent: </span>
           <select className={styles.select} onChange={e => handleFilterByRegion(e)} >
-            <option value='All' selected="true">All</option>
+            <option value='All'>All</option>
             <option value='Africa'>Africa</option>
             <option value='Americas'>Americas</option>
             <option value='Asia'>Asia</option>
@@ -112,8 +114,11 @@ export function Home() {
           </select>
           {/* Filtrado por actividad turística */}
           <span className={styles.item}>Activity: </span>
-          <select className={styles.select} onChange={(e) => handleFilterByActivity(e)} >
-            <option selected disabled>Choose activity</option>
+          <select 
+            className={styles.select}
+            defaultValue='default'
+            onChange={(e) => handleFilterByActivity(e)} >
+            <option value='default' disabled='disabled'>Choose activity</option>
             {
               activities.map((a) => (
                 <option value={a.name} key={a.name}>{a.name}</option>
@@ -122,15 +127,21 @@ export function Home() {
           </select>
           {/* Filtrado por orden alfabético */}
           <span className={styles.item}>Order: </span>
-          <select className={styles.select} onChange={(e) => handlerOrderByName(e)} >
-            <option selected disabled>Choose order</option>
+          <select 
+            className={styles.select}
+            defaultValue='default'
+            onChange={(e) => handleOrderByName(e)}>
+            <option value='default' disabled='disabled'>Choose order</option>
             <option value='Ascendent'>Ascendent</option>
             <option value='Descendent'>Descendent</option>
           </select>
           {/* Filtrado por población */}
           <span className={styles.item}>Population: </span>
-          <select className={styles.select} onChange={e => handlerOrderByPopulation(e)}>
-          <option selected disabled>Choose order</option>
+          <select
+            className={styles.select}
+            defaultValue='default'
+            onChange={e => handleOrderByPopulation(e)}>
+            <option value='default' disabled="disabled">Choose order</option>
             <option value='Ascendent'>Ascendent</option>
             <option value='Descendent'>Descendent</option>
           </select>
