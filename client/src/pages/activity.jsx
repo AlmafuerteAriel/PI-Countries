@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addActivity, getCountries } from '../redux/actions';
+import { NavBar } from '../components/NavBar';
 import styles from './Activity.module.css';
 
 //Validaciones:
@@ -118,8 +119,8 @@ export function Activity() {
 
   return(
     <div className={styles.content}>
+      <NavBar />
       <h1>Create an activity:</h1>
-      <Link to='/home'><button>Home</button></Link>
       <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
         
         <label className={styles.item}>Activity name: </label>

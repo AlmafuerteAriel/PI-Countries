@@ -17,6 +17,7 @@
 .content {
   background-color: #3d4a57;
   padding: 5px;
+  padding-top: 85px;
 }
 
 .searchContent {
@@ -37,7 +38,8 @@
   display: flex;
   justify-content: center;
   padding: 8px;
-  padding-top: 0px;
+  padding-top: 10px;
+  padding-bottom: 15px;
 }
 @media (max-width: 560px) {
   .filterContent {

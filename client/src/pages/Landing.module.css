@@ -53,13 +53,15 @@
 
 
 .title {
+   font-family: Knewave;
+   letter-spacing: 0.05em;
    margin: 0;
    padding-left: 50px;
    padding-top: 25px;
    height: 70px;
    font-size: 3rem;
    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #212061, 0 0 40px #212061,
-      0 0 50px #212061, 0 0 60px #212061, 0 0 70px #212061;
+     0 0 50px #212061;
 }
 
 .quote {

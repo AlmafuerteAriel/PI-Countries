@@ -13,7 +13,7 @@ import {
 import { Link } from 'react-router-dom';
 import { Card } from '../components/Card';
 import { Paginated } from '../components/Paginated';
-import { SearchBar } from '../components/searchBar';
+import { SearchBar } from '../components/SearchBar';
 import { NavBar } from '../components/NavBar';
 import styles from './Home.module.css';
 

@@ -12,17 +12,16 @@
   background: linear-gradient(to bottom, #2B3945, rgb(205, 205, 223));
   box-shadow: 5px 5px 15px #2B3945;
   border-radius: 15px;
-  min-height: 700px;
+  min-height: 300px;
   max-width: 550px;
   margin: auto;
 }
 
 .image {
-  border-radius: 10px;
   /* fijamos ancho y alto para reservar espacio */
-  width: 350px;
-  height: 235px;
-  padding-top: 25px;
+  width: 450px;
+  height: auto;
+  padding-top: 50px;
 }
 
 .card h2 {

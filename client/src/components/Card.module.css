@@ -3,26 +3,43 @@
   font-size: 1,5rem;
   text-align: center;
   background: linear-gradient(to bottom, #2B3945, rgb(205, 205, 223));
-  /* background-color: steelblue; */
   box-shadow: 5px 5px 15px #2B3945;
   border-radius: 15px;
-  height: 340px;
+  height: 360px;
+}
+
+.title {
+  color: black;
+  font-size: 1.4em;
+}
+
+.item {
+  color: #4e5b66;
+  font-size: 1.2em;
 }
 
 .image {
   border-radius: 10px;
   /* fijamos ancho y alto para reservar espacio */
-  width: 250px;
-  height: 150px;
-  padding: 5px;
+  width: 240px;
+  height: 140px;
+  padding: 10px;
   border-radius: 15px;
 }
 
-/* imagen ocupa t90% del ancho en pantallas móviles */
-@media (max-width: 560px) {
-  .image {
-    width: 90%;
-    height: auto;
-  }
-}
-
+/* 
+///////
+.card {
+  color: #4e5b66;
+  line-height : 20px;
+  max-width: 60%;
+  list-style: none;
+  font-size: 1,5rem;
+  text-align: center;
+  background: linear-gradient(to bottom, #2B3945, rgb(205, 205, 223));
+  box-shadow: 5px 5px 15px #2B3945;
+  border-radius: 15px;
+  min-height: 700px;
+  max-width: 550px;
+  margin: auto;
+} */

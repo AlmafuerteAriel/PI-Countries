@@ -2,6 +2,8 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { getCountriesByName } from "../redux/actions";
+import { FiSearch } from 'react-icons/fi';
+import styles from './SearchBar.module.css';
 
 export function SearchBar() {
   const dispatch = useDispatch();
@@ -19,14 +21,20 @@ export function SearchBar() {
   }
 
   return (
-    <div>
-      <input type="text"
-      placeholder='Search Countries...'
-      onChange={(e) => handlerInputChange(e)}
-      />
-      <button type='submit' onClick={
-        (e) => { handlerSubmit(e) }
-      }>Search</button>
-    </div>
+    <form className={styles.searchContainer}>
+      <div className={styles.searchBox}>
+        <input 
+          className={styles.searchInput}
+          type="text"
+          placeholder='Search Countries...'
+          onChange={(e) => handlerInputChange(e)}
+        />
+        <button className={styles.searchButton} type='submit' onClick={
+          (e) => { handlerSubmit(e) }
+        }>
+          <FiSearch className={styles.imageButton} />
+        </button>
+      </div>
+    </form>
   )
 }

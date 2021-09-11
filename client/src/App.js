@@ -4,6 +4,8 @@ import { Landing } from './pages/Landing';
 import { Home } from './pages/Home';
 import { Activity } from './pages/Activity';
 import { Details } from './pages/Details';
+import { About } from './pages/About';
+import { Activities } from './pages/Activities';
 
 export function App() {
 	return (
@@ -14,6 +16,8 @@ export function App() {
 					<Route exact path="/home" component={Home} />
 					<Route exact path="/activity" component={Activity} />
 					<Route exact path="/home/:id" component={Details} />
+					<Route exact path="/about" component={About} />
+					<Route exact path="/activities" component={Activities} />
 				</Switch>
 			</div>
 		</BrowserRouter>
