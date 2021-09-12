@@ -10,15 +10,15 @@ export function SearchBar() {
   const [name, setName] = useState('');
 
   function handlerInputChange(e) {
-    e.preventDefault();
     setName(e.target.value);
+    //console.log(name);
   }
   
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(getCountriesByName(name));
     //console.log('1 ', name);
-    //setName('Search Countries...');
+    setName(''); //NO funciona
     //console.log('2 ', name);
   }
 
@@ -29,6 +29,7 @@ export function SearchBar() {
           className={styles.searchInput}
           type="text"
           placeholder='Search Countries...'
+          value= {name}
           onChange={(e) => handlerInputChange(e)}
         />
         <button className={styles.searchButton} type='submit' onClick={

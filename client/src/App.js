@@ -6,6 +6,7 @@ import { Activity } from './pages/Activity';
 import { Details } from './pages/Details';
 import { About } from './pages/About';
 import { Activities } from './pages/Activities';
+import { NotFound } from './pages/NotFound';
 
 export function App() {
 	return (
@@ -18,6 +19,7 @@ export function App() {
 					<Route exact path="/home/:id" component={Details} />
 					<Route exact path="/about" component={About} />
 					<Route exact path="/activities" component={Activities} />
+					<Route path="*" component={NotFound} />
 				</Switch>
 			</div>
 		</BrowserRouter>

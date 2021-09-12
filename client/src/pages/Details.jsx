@@ -24,7 +24,7 @@ export function Details(props) {
       <NavBar />
       <div className={styles.card}>
         <img className={styles.image} src={country.flag} alt={country.name} />
-        <h2>Country: {country.name}</h2>
+        <h2 className={styles.title}>Country: {country.name}</h2>
         <h3>alpha3Code: {country.id}</h3>
         <h3>Region: {country.region}</h3>
         <h3>Subregion: {country.subregion}</h3>

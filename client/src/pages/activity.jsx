@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addActivity, getCountries } from '../redux/actions';
 import { NavBar } from '../components/NavBar';
@@ -10,7 +10,6 @@ function validate(input){
   const errors = {};
   if(!input.name) errors.name = 'An activity name is required';
   else if (!input.duration) errors.duration = "Duration is required";
-  else if (input.duration < 1 || input.duration > 24) errors.duration = "An activity can last between 1 and 24 hours";
   else if (!input.difficulty) errors.difficulty = 'Please select difficulty level';
   else if (input.difficulty < 1 || input.difficulty > 5) errors.difficulty = "Difficulty level can last between 1 and 5";
   else if (!input.season) errors.season = "Please select a season";
@@ -30,13 +29,7 @@ export function Activity() {
     countryId: []
   })
   const [errors, setErrors] = useState({});
-/*
-  "countryId": ["URY","ARG","VEN"],
-  "name": "sky",
-  "difficulty": "3",
-  "duration": "mucho",
-  "season": "winter"
-*/
+
   //Traemos el listado de paíces:
   useEffect(() => {
     dispatch(getCountries());
@@ -48,23 +41,25 @@ export function Activity() {
       ...input,
       [e.target.name] : e.target.value
     })
+    //console.log(input);
     setErrors(validate({
       ...input,
       [e.target.name] : e.target.value
     }))
   }
 
-  //Manejo de radio difficulty:
+  //Manejo de radio:
   function handleRadio(e) {
     if(e.target.checked) {
       setInput({
         ...input,
-        [e.target.name] : e.target.value
+        season: e.target.value
       })
     }
-    setErrors(validate({
+    console.log((input));
+      setErrors(validate({
       ...input,
-      [e.target.name] : e.target.value
+      season: e.target.value
     }))
   }
 
@@ -76,9 +71,21 @@ export function Activity() {
     })
     setErrors(validate({
       ...input,
-      [e.target.name] : e.target.value
+      countryId: [...input.countryId, e.target.value]
+      // ...input,
+      // [e.target.name] : e.target.value
     }))
+    //console.log(input.countryId);
   }
+
+  //>>-----------
+  //Obtener nombre desde id
+  function getNameById(id) {
+    const countryById = allCountries.filter((c) => c.id === id);
+    //console.log('Nombre---', countryById[0].name);
+    return countryById[0].name;
+  }
+//<<----------
 
   //Manejo de submit:
   function handleSubmit(e){
@@ -104,6 +111,7 @@ export function Activity() {
       history.push('/home');
     } else {
       e.preventDefault();
+      //console.log(input.countryId);
       alert('All fields must be completed')
     }
   }
@@ -117,92 +125,120 @@ export function Activity() {
     e.preventDefault();
   };
 
+  // const remove = (e) => {
+  //   console.log(e.target);
+  //   setInput({
+  //     ...input,
+  //     countryId: input.countryId.filter(country => country !== e.target.id)
+  //   })
+  //   e.preventDefault();
+  // };
+
   return(
     <div className={styles.content}>
       <NavBar />
-      <h1>Create an activity:</h1>
-      <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
-        
-        <label className={styles.item}>Activity name: </label>
-        <input 
-          type='text'
-          value={input.name}
-          name='name'
-          onChange={(e) => handleChange(e)}
-          placeholder='Activity name'
-        />
-        {errors.name && (<p className='error'>{errors.name}</p>)}
+      <div className={styles.card}>
+        <h1>Create an activity:</h1>
+        <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
+          
+          <label className={styles.item}>Activity name:</label>
+            <input 
+              type='text'
+              value={input.name}
+              name='name'
+              onChange={(e) => handleChange(e)}
+              placeholder='Activity name'
+            />
+          {errors.name && (<p className={styles.error}>{errors.name}</p>)}
 
-        <label className={styles.item}>Activity duration: </label>
-        <input type='text'
-          value={input.duration}
-          name='duration'
-          onChange={(e) => handleChange(e)}
-          placeholder='1 to 24 hours'
-        />
-        {errors.duration && (<p className='error'>{errors.duration}</p>)}
-
-        <label className={styles.item}>Activity difficulty: </label>
-        <input type='number'
-          value={input.difficulty}
-          name='difficulty'
-          onChange={(e) => handleChange(e)}
-          placeholder='1 to 5'
-        />
-        {errors.difficulty && (<p className='error'>{errors.difficulty}</p>)}
-
-        <label className={styles.item}>Season: </label>
-        <div>
-          <span>Summer</span>
-          <input 
-            type='radio' 
-            name='season' 
-            value='summer' 
-            onChange={e => handleRadio(e)}
+          <label className={styles.item}>Activity duration:</label>
+          <input type='text'
+            value={input.duration}
+            name='duration'
+            onChange={(e) => handleChange(e)}
+            placeholder='1 to 24 hours'
           />
-          <span className={styles.radioItem}>Winter</span>
-          <input 
-            type='radio' 
-            name='season' 
-            value='winter' 
-            onChange={e => handleRadio(e)}
-          />
-          <span className={styles.radioItem}>Spring</span>
-          <input 
-            type='radio' 
-            name='season' 
-            value='spring' 
-            onChange={e => handleRadio(e)}
-          />
-          <span className={styles.radioItem}>Autumn</span>
-          <input 
-            type='radio' 
-            name='season' 
-            value='autumn'
-            onChange={e => handleRadio(e) }
-          />
-        </div>
-        {errors.season && (<p className='error'>{errors.season}</p>)}
-        
-        <label className={styles.item}>Choose countries: </label>
-        <select className={styles.countries} onChange={e => handleSelect(e)}>
-        {allCountries.map(c => (
-          <option value={c.id} key={c.id}>{c.name}</option>
-        ))}
-        </select>
-        {errors.countryId && (<p className='error'>{errors.countryId}</p>)}
+          {errors.duration && (<p className={styles.error}>{errors.duration}</p>)}
 
-        <ul>
-          {input.countryId.map(c => (
-            //<li key={c}>{c} onClick={remove} id={c}>X</button></li>
-            <li key={c}>{c} <button onClick={remove} id={c}>X</button></li>
-          )
-          )}
-        </ul>
+          <label className={styles.item}>Activity difficulty:</label>
+          <input type='number'
+            value={input.difficulty}
+            name='difficulty'
+            onChange={(e) => handleChange(e)}
+            placeholder='1 to 5'
+          />
+          {errors.difficulty && (<p className={styles.error}>{errors.difficulty}</p>)}
 
-        <button type='submit'>Create Activity</button>
+          <label className={styles.item}>Season: </label>
+          <div>
+            <label className={styles.radioItem}>
+              <input 
+                type='radio' 
+                name='season' 
+                value='summer' 
+                onChange={e => handleRadio(e)}
+              />
+              Summer
+            </label>
+            <label className={styles.radioItem}>
+              <input 
+                type='radio' 
+                name='season' 
+                value='winter' 
+                onChange={e => handleRadio(e)}
+              />
+              Winter
+            </label>
+            <label className={styles.radioItem}>
+              <input 
+                type='radio' 
+                name='season' 
+                value='spring' 
+                onChange={e => handleRadio(e)}
+              />
+              Spring
+            </label>
+            <label className={styles.radioItem}>
+              <input 
+                type='radio' 
+                name='season' 
+                value='autumn'
+                onChange={e => handleRadio(e) }
+              />
+              Autumn
+            </label>
+          </div>
+          {errors.season && (<p className={styles.error}>{errors.season}</p>)}
+          
+          {/* <select name="" id=""></select> */}
+          <label className={styles.item}>Choose countries:</label>
+          <select
+            className={styles.countriesSelection}
+            name='countryId'
+            id={input.countryId}
+            onChange={(e) => handleSelect(e)}>
+            {allCountries.map((c) => (
+              <option value={c.id} key={c.id}>{c.name}</option>
+            ))}
+          </select>
+          {errors.countryId && (<p className={styles.error}>{errors.countryId}</p>)}
 
-      </form>
+          <ul className={styles.countriesList}>
+            {input.countryId.map(c => (
+              <div className={styles.countryRow} key={c + 'A'}>
+                <button className={styles.countryListButton}
+                onClick={remove}
+                id={c}>X</button>
+                <li key={c}>{getNameById(c)}</li>
+              </div>
+              )
+            )}
+          </ul>
+         
+          <button type='submit'>Create Activity</button>
+
+        </form>
+      </div>
     </div>
   )
 }
