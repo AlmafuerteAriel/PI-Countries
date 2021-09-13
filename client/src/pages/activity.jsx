@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { addActivity, getCountries } from '../redux/actions';
+import { addActivity, getActivities, getCountries } from '../redux/actions';
 import { NavBar } from '../components/NavBar';
 import styles from './Activity.module.css';
 
@@ -72,20 +72,16 @@ export function Activity() {
     setErrors(validate({
       ...input,
       countryId: [...input.countryId, e.target.value]
-      // ...input,
-      // [e.target.name] : e.target.value
     }))
     //console.log(input.countryId);
   }
 
-  //>>-----------
   //Obtener nombre desde id
   function getNameById(id) {
     const countryById = allCountries.filter((c) => c.id === id);
     //console.log('Nombre---', countryById[0].name);
     return countryById[0].name;
   }
-//<<----------
 
   //Manejo de submit:
   function handleSubmit(e){
@@ -108,6 +104,8 @@ export function Activity() {
         countryId: []
       });
       //Redirigimos a Home:
+      dispatch(getActivities());
+      dispatch(getCountries());
       history.push('/home');
     } else {
       e.preventDefault();
@@ -124,15 +122,6 @@ export function Activity() {
     })
     e.preventDefault();
   };
-
-  // const remove = (e) => {
-  //   console.log(e.target);
-  //   setInput({
-  //     ...input,
-  //     countryId: input.countryId.filter(country => country !== e.target.id)
-  //   })
-  //   e.preventDefault();
-  // };
 
   return(
     <div className={styles.content}>
@@ -177,36 +166,28 @@ export function Activity() {
                 name='season' 
                 value='summer' 
                 onChange={e => handleRadio(e)}
-              />
-              Summer
-            </label>
+              />Summer</label>
             <label className={styles.radioItem}>
               <input 
                 type='radio' 
                 name='season' 
                 value='winter' 
                 onChange={e => handleRadio(e)}
-              />
-              Winter
-            </label>
+              />Winter</label>
             <label className={styles.radioItem}>
               <input 
                 type='radio' 
                 name='season' 
                 value='spring' 
                 onChange={e => handleRadio(e)}
-              />
-              Spring
-            </label>
+              />Spring</label>
             <label className={styles.radioItem}>
               <input 
                 type='radio' 
                 name='season' 
                 value='autumn'
                 onChange={e => handleRadio(e) }
-              />
-              Autumn
-            </label>
+              />Autumn</label>
           </div>
           {errors.season && (<p className={styles.error}>{errors.season}</p>)}
           
@@ -234,7 +215,7 @@ export function Activity() {
               )
             )}
           </ul>
-         
+
           <button type='submit'>Create Activity</button>
 
         </form>

@@ -30,9 +30,8 @@ export function rootReducer(state = initialState, action) {
 			};
 
 		case 'FILTER_BY_ACTIVITY':
-			const countries = state.allCountries;
-			//const countries = state.countries;
-			//const filteredByActivity = [];
+			//const countries = state.allCountries;
+			const countries = state.countries;
 			//console.log(action.payload);
 			//console.log(countries[0]);
 			let filteredByActivity = [];
@@ -46,11 +45,6 @@ export function rootReducer(state = initialState, action) {
 				}
 			}
 			//console.log(filteredByActivity);
-
-			//const countriesByActivity = [];
-			// const countriesByActivity = countries.filter((c) =>
-			// 	c.activities.map((a) => a === action.payload)
-			// );
 			return {
 				...state,
 				countries: filteredByActivity
@@ -116,7 +110,13 @@ export function rootReducer(state = initialState, action) {
 				...state,
 				activities: action.payload
 			};
-
+		//------------
+		case 'COUNTRY_NOT_FOUND':
+			return {
+				...state,
+				countries: action.payload
+			};
+		//------------
 		default:
 			return state;
 	}

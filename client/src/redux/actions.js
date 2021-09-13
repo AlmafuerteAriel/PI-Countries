@@ -49,7 +49,19 @@ export function getCountriesByName(payload) {
 				payload: countriesByName.data
 			});
 		} catch (error) {
-			console.log(error);
+			//console.log(error);
+			return dispatch({
+				type: 'GET_COUNTRIES_BY_NAME',
+				payload: [
+					{
+						id: '404',
+						name: 'Country Not Found',
+						flag: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjUinX3N0rZjQ1mYFOCpJXcmJGgdvNm09ZAw&usqp=CAU',
+						region: '-',
+						population: '-'
+					}
+				]
+			});
 		}
 	};
 }

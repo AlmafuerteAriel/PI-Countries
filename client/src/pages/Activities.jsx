@@ -14,7 +14,7 @@ export function Activities(props) {
   }, [dispatch])
 
   const activities = useSelector ((state) => state.activities);
-  console.log(activities);
+  //console.log(activities);
 
  //Verifico que existan actividades:
  const existActivities = activities?.length ? '' : 'No activities';
