@@ -29,7 +29,7 @@ export function Activities(props) {
           activities?.map(a => {
             return (
               // key => evitar warning!!!
-              <li className={styles.activity} key={a.name}>
+              <li className={styles.activity} key={a.id}>
                 <h2 className={styles.activityTitle}>{a.name}</h2>
                 <div className={styles.activityItems}>
                   <h3>Duration: {a.duration}</h3>

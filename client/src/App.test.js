@@ -30,40 +30,44 @@ describe('Card component', () => {
 });
 
 /*
-describe('<Activity /> Page', () => {
+import React from 'react';
+import { configure, mount } from 'enzyme';
+import Card from './components/Card';
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
+import '@testing-library/jest-dom';
+
+configure({ adapter: new Adapter() });
+
+describe('Country Card', () => {
+	const country = {
+		id: 'ARG',
+		name: 'Argentina',
+		flag: 'https://restcountries.eu/data/arg.svg',
+		region: 'Americas',
+		capital: 'Buenos Aires',
+		subregion: 'South America',
+		area: 2780400,
+		population: '43590400'
+	};
 	let wrapper;
 	beforeEach(() => {
-		wrapper = mount(<Activity />);
+		wrapper = mount(
+			<Card
+				flag={country.flag}
+				name={country.name}
+				region={country.region}
+				population={country.population}
+			/>
+		);
 	});
-	it('form should have an input with name "name" and type "text"', () => {
-		const { container } = render(<Activity />);
-		const element = container.querySelectorAll('input')[0];
-		expect(element.type).toBe('text');
-		expect(element.name).toBe('name');
+	it('should render a img tag', () => {
+		expect(wrapper.find('li')).toHaveLength(1);
 	});
-});
-*/
-
-/* describe('Activity page', () => {
-	it('should display a title', () => {
-		render(<NavBar />);
-		expect(screen.queryByText(/Countries/i)).toBeInTheDocument();
+	it('should render a h2 tag', () => {
+		expect(wrapper.find('h2')).toHaveLength(1);
 	});
-}); */
-
-/*
-describe('<Activity /> Mounted', () => {
-	let wrapper;
-	beforeEach(() => {
-		wrapper = mount(<Activity />);
+	it('should render two h3 tag', () => {
+		expect(wrapper.find('h3')).toHaveLength(2);
 	});
-
-	it('Form should have a name "name" and a type "text"', () => {
-		const { container } = render(<Activity />);
-		const element = container.querySelectorAll('input')[0];
-		expect(element.type).toBe('text');
-		expect(element.name).toBe('name');
-	});
-
 });
 */

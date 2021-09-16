@@ -26,29 +26,4 @@ export function App() {
 	);
 }
 
-/* //import { useLocation } from 'react-router-dom';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import './App.css';
-import { Landing } from './pages/landing/Landing';
-import { Home } from './pages/home/Home';
-import { Details } from './pages/details/Details';
-
-function App() {
-	return (
-		<Router>
-			<Switch>
-				<Route exact path="/home">
-					<Home />
-				</Route>
-				<Route exact path="/details">
-					<Details />
-				</Route>
-				<Route path="/">
-					<Landing />
-				</Route>
-			</Switch>
-		</Router>
-	);
-} */
-
 export default App;

@@ -1,16 +1,5 @@
 const { Activity, Country } = require('../db.js');
 
-// const getAllCountries = async (_req, res) => {
-// 	try {
-// 		const dbCountries = await Country.findAll({
-// 			include: [Activity]
-// 		});
-// 		res.json(dbCountries);
-// 	} catch (error) {
-// 		res.json({ error: 'Error reading database' });
-// 	}
-// };
-
 const filterByName = async (req, res) => {
 	//localhost:3001/countries -> All Countries
 	//localhost:3001/countries?name=nameToSearch

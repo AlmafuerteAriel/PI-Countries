@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+//**import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addActivity, getActivities, getCountries } from '../redux/actions';
 import { NavBar } from '../components/NavBar';
@@ -19,7 +19,7 @@ function validate(input){
 
 export function Activity() {
   const dispatch = useDispatch();
-  const history = useHistory();
+  //**const history = useHistory();
   const allCountries = useSelector((state) => state.allCountries);
   const [input, setInput] = useState({
     name: "",
@@ -85,13 +85,13 @@ export function Activity() {
 
   //Manejo de submit:
   function handleSubmit(e){
-    console.log(input);
+    //console.log(input);
     if(
       input.name &&
       input.duration &&
       input.difficulty &&
       input.season &&
-      input.countryId.length //countryId es un array
+      input.countryId.length
     ) {
       e.preventDefault();
       dispatch(addActivity(input));
@@ -104,9 +104,7 @@ export function Activity() {
         countryId: []
       });
       //Redirigimos a Home:
-      dispatch(getActivities());
-      dispatch(getCountries());
-      history.push('/home');
+      //**history.push('/home');
     } else {
       e.preventDefault();
       //console.log(input.countryId);
@@ -145,7 +143,7 @@ export function Activity() {
             value={input.duration}
             name='duration'
             onChange={(e) => handleChange(e)}
-            placeholder='1 to 24 hours'
+            placeholder='For example: 2 hours, 3 days, etc'
           />
           {errors.duration && (<p className={styles.error}>{errors.duration}</p>)}
 
@@ -191,7 +189,6 @@ export function Activity() {
           </div>
           {errors.season && (<p className={styles.error}>{errors.season}</p>)}
           
-          {/* <select name="" id=""></select> */}
           <label className={styles.item}>Choose countries:</label>
           <select
             className={styles.countriesSelection}

@@ -1,6 +1,5 @@
 const initialState = {
 	countries: [],
-	//*****Guardamos una copia para entregar a los filtrados:
 	allCountries: [],
 	activities: [],
 	countryDetails: {}
@@ -12,7 +11,7 @@ export function rootReducer(state = initialState, action) {
 			return {
 				...state,
 				countries: action.payload,
-				//*****Guardamos una copia para entregar a los filtrados:
+				//Guardamos una copia de countries:
 				allCountries: action.payload
 			};
 
@@ -30,8 +29,8 @@ export function rootReducer(state = initialState, action) {
 			};
 
 		case 'FILTER_BY_ACTIVITY':
-			//const countries = state.allCountries;
-			const countries = state.countries;
+			const countries = state.allCountries;
+			//const countries = state.countries;
 			//console.log(action.payload);
 			//console.log(countries[0]);
 			let filteredByActivity = [];
@@ -93,7 +92,7 @@ export function rootReducer(state = initialState, action) {
 				...state,
 				countries: action.payload
 			};
-		//Agregar Post en activity: No tiene función
+		//Agregar Post en activity: No modifica el estado
 		case 'ADD_ACTIVITY':
 			return {
 				...state

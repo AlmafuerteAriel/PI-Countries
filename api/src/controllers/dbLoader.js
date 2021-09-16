@@ -1,4 +1,3 @@
-//>>
 const axios = require('axios');
 const { Country } = require('../db');
 const { URL_ALL } = require('../consts');
@@ -39,4 +38,3 @@ const dbLoader = async function (_req, res) {
 };
 
 module.exports = { dbLoader };
-//<<

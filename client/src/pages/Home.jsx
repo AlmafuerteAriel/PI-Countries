@@ -21,38 +21,37 @@ export function Home() {
   const allCountries = useSelector((state)=> state.countries);
 
   //>> Paginado:
-  //Estado inicial: página 1
   const [currentPage, setCurrentPage] = useState(1);
-  //Paíces por página: 10
   const [countriesPerPage, setCountriesPerPage] = useState(10);
   const indexOfLastCountry = currentPage * countriesPerPage;
   const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
+  //9 países en la primer página
+  const [contriesInFirstPage, setcontriesInFirstPage] = useState(9);
+  const difference = countriesPerPage - contriesInFirstPage;
   //Guardamos countries a mostrar por página
   const currentCountries = allCountries.slice(
-    indexOfFirstCountry,
-    (currentPage === 1 ? indexOfLastCountry - 1 : indexOfLastCountry)
+    (currentPage === 1 ? indexOfFirstCountry : indexOfFirstCountry - difference),
+    indexOfLastCountry - difference
   );
-  //Creo estado inicial para recargar página al ordenar por nombre:
+  //Estado inicial para recargar página al ordenar por nombre:
   const [refresh, setRefresh] = useState([]);
-  //Traemos las actividades:
-  const activities = useSelector((state) => state.activities);
 
+  const activities = useSelector((state) => state.activities);
+  
   const paginated = (pageNumber) => {
     setCurrentPage(pageNumber);
   }
   //<<
 
-  //Actualizamos los países:
   useEffect(()=> {
     dispatch(getCountries());
   },[dispatch])
 
-  //Actualizamos las actividades:
   useEffect(()=> {
     dispatch(getActivities());
   }, [dispatch])
 
-  function handleClick(e) {
+  function handleReset(e) {
     e.preventDefault();
     dispatch(getCountries());
   }
@@ -95,7 +94,7 @@ export function Home() {
       
       <div className={styles.content}>
         <div className={styles.searchContent}>
-          <button className={styles.button} onClick={e => {handleClick(e)}}>Reload Countries</button>
+          <button className={styles.button} onClick={e => {handleReset(e)}}>Reload Countries</button>
           <Link to='/activity'><button className={styles.button}>Add Activity</button></Link>
           <SearchBar className={styles.button} />
         </div>
@@ -121,7 +120,7 @@ export function Home() {
             <option value='default' disabled='disabled'>Choose activity</option>
             {
               activities.map((a) => (
-                <option value={a.name} key={a.name}>{a.name}</option>
+                <option value={a.name} key={a.id}>{a.name}</option>
               ))
             }
           </select>
@@ -156,6 +155,7 @@ export function Home() {
           paginated={paginated}
           //Enviamos la currentPage
           currentPage={currentPage}
+          contriesInFirstPage={contriesInFirstPage}
         />
         {/* //<< PAGINADO */}
         <ul className={styles.countriesGrid}>

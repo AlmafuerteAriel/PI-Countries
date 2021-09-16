@@ -2,9 +2,10 @@ import React from "react";
 import styles from './Paginated.module.css';
 
 export function Paginated (
-  {countriesPerPage, allCountries, paginated, currentPage}) {
+  {countriesPerPage, allCountries, paginated, currentPage, contriesInFirstPage}) {
   const pageNumbers = [];
-  for (let i = 0; i < Math.ceil(allCountries / countriesPerPage); i++) {
+  const condition = (Math.ceil(allCountries - contriesInFirstPage) / countriesPerPage)+1;
+  for (let i = 0; i < condition; i++) {
     pageNumbers.push(i + 1); //Número de páginas totales
   }
   return (

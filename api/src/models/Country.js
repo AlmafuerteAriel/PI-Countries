@@ -14,7 +14,7 @@ module.exports = (sequelize) => {
 		region: { type: DataTypes.STRING, allowNull: false },
 		capital: { type: DataTypes.STRING, allowNull: false },
 		subregion: { type: DataTypes.STRING, allowNull: true },
-		area: { type: DataTypes.DOUBLE, allowNull: true }, // Da error con INTEGER
+		area: { type: DataTypes.DOUBLE, allowNull: true },
 		population: { type: DataTypes.STRING, allowNull: true }
 	});
 };
