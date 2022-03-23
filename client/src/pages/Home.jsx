@@ -170,6 +170,7 @@ export function Home() {
                       name={c.name}
                       region={c.region}
                       population={c.population}
+                      // gini={c.gini}
                     />
                   </Link>
                 </div>

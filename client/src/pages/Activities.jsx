@@ -31,11 +31,21 @@ export function Activities(props) {
               // key => evitar warning!!!
               <li className={styles.activity} key={a.id}>
                 <h2 className={styles.activityTitle}>{a.name}</h2>
-                <div className={styles.activityItems}>
-                  <h3>Duration: {a.duration}</h3>
-                  <h3>Difficulty: {a.difficulty}</h3>
-                  <h3>Season: {a.season}</h3>
-                </div>
+                {/* < className={styles.activityItems}> */}
+                  <div>
+                    <h3>Duration: {a.duration}</h3>
+                    <h3>Difficulty: {a.difficulty}</h3>
+                    <h3>Season: {a.season}</h3>
+                  </div>
+                  <div>
+                    {
+                      a.countries?.map(ac => {
+                        return(
+                          <h3>{ac.name}</h3>
+                        )
+                      })
+                    }
+                  </div>
               </li>
             )
           })

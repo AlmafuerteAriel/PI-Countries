@@ -56,7 +56,7 @@ export function Activity() {
         season: e.target.value
       })
     }
-    console.log((input));
+    //console.log((input));
       setErrors(validate({
       ...input,
       season: e.target.value

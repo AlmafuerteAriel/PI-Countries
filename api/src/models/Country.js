@@ -16,5 +16,6 @@ module.exports = (sequelize) => {
 		subregion: { type: DataTypes.STRING, allowNull: true },
 		area: { type: DataTypes.DOUBLE, allowNull: true },
 		population: { type: DataTypes.STRING, allowNull: true }
+		// gini: { type: DataTypes.STRING, allowNull: true }
 	});
 };
